@@ -73,3 +73,7 @@ body::after{
 
 /* small signature mark */
 .signature { font-family: 'Playfair Display', serif; font-size: 0.9rem; }
+
+/* utility to hide scrollbars for horizontal scrollers */
+.scrollbar-hide{ -ms-overflow-style:none; scrollbar-width:none; }
+.scrollbar-hide::-webkit-scrollbar{ display:none; }

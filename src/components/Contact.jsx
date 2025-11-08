@@ -63,12 +63,12 @@ export default function Contact(){
           <div className="mt-6 text-sm text-gray-700">
             <p>Email: <a href="mailto:Samarmsadekk@gmail.com" className="text-clay">Samarmsadekk@gmail.com</a></p>
             <p>Phone: <a href="tel:+33600000000" className="text-clay">+33 6 00 00 00 00</a></p>
-            <p className="mt-4">Instagram: <a href="https://instagram.com" target="_blank" rel="noreferrer" className="text-clay">@samar_art</a></p>
+            <p className="mt-4">Instagram: <a href="https://www.instagram.com/samarscorner/" target="_blank" rel="noreferrer" className="text-clay">@samarscorner</a></p>
             <p className="mt-2">Localisation: Remiremont, France</p>
           </div>
 
           <div className="mt-8">
-            <iframe title="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2801.123456789!2d6.444000!3d48.166000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1" width="100%" height="220" className="rounded-md border" loading="lazy" />
+            <iframe title="map" src="https://www.google.com/maps?q=48.019852,6.610639&z=14&output=embed" width="100%" height="220" className="rounded-md border" loading="lazy" />
           </div>
         </div>
 
