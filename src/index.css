@@ -77,3 +77,11 @@ body::after{
 /* utility to hide scrollbars for horizontal scrollers */
 .scrollbar-hide{ -ms-overflow-style:none; scrollbar-width:none; }
 .scrollbar-hide::-webkit-scrollbar{ display:none; }
+
+/* hero decorative topography styling */
+.hero-decor svg{ mix-blend-mode: overlay; opacity: 0.9; filter: blur(0.2px) saturate(0.95); }
+.hero-decor g path{ stroke-linecap: round; stroke-linejoin: round; }
+.hero-decor{ opacity:0.65 }
+
+/* bigger serif headline tweak for legato-like feel */
+.serif { font-weight: 700; letter-spacing: -0.02em; }
