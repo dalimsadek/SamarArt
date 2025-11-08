@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --ivory: #F6F2EA;
+  --clay: #C89F88;
+  --sage: #9AAE95;
+  --softgold: #D4B37A;
+  --warmblack: #22201D;
+}
+
+html,body,#root{height:100%;}
+body{
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: linear-gradient(180deg, rgba(246,242,234,1) 0%, rgba(238,235,228,1) 100%);
+}
+
+/* subtle paper texture via repeating-linear-gradient */
+body::before{
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(rgba(0,0,0,0.01) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.08;
+}
+
+/* Soft shifting fabric-like gradient animation */
+body::after{
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: -1;
+  background: radial-gradient(ellipse at 10% 10%, rgba(212,179,122,0.06), transparent 20%), radial-gradient(ellipse at 90% 90%, rgba(154,174,149,0.04), transparent 20%);
+  mix-blend-mode: multiply;
+  animation: softShift 12s ease-in-out infinite alternate;
+}
+
+@keyframes softShift{
+  from { transform: translateY(0) scale(1); }
+  to { transform: translateY(-30px) scale(1.03); }
+}
+
+/* subtle parallax helper for hero */
+.parallax {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* button ripple effect */
+.btn-ghost, .bg-clay{
+  position: relative; overflow: hidden;
+}
+.btn-ghost::after, .bg-clay::after{
+  content: '';
+  position: absolute; left:50%; top:50%; width:0; height:0; background: rgba(255,255,255,0.12); border-radius:50%; transform:translate(-50%,-50%);
+  transition: width 0.45s ease, height 0.45s ease, opacity 0.8;
+}
+.btn-ghost:active::after, .bg-clay:active::after{
+  width:200px; height:200px; opacity:0; transition: 0s;
+}
+
+/* Serif headline style tweak */
+.serif { letter-spacing: -0.02em; }
+
+
+.serif { font-family: 'Playfair Display', serif; }
+.brand { color: var(--warmblack); }
+
+.section-divider{ height:1px; background: linear-gradient(90deg, transparent, rgba(0,0,0,0.06), transparent); }
+
+.btn-ghost{
+  background: transparent; border: 1px solid rgba(34,32,29,0.06); padding: 0.6rem 1rem; border-radius: 9999px;
+}
+
+/* small signature mark */
+.signature { font-family: 'Playfair Display', serif; font-size: 0.9rem; }
