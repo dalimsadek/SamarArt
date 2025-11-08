@@ -16,6 +16,16 @@ body{
   background: linear-gradient(180deg, rgba(246,242,234,1) 0%, rgba(238,235,228,1) 100%);
 }
 
+/* stronger page rhythm and wider comfortable measure */
+main, .page, .content{ max-width:1200px; margin-left:auto; margin-right:auto; padding-left:1rem; padding-right:1rem }
+
+/* smooth, subtle hover/interaction style */
+a { color: var(--warmblack); text-decoration: underline; text-underline-offset:3px }
+a:hover{ color: var(--clay) }
+
+/* reading progress bar is updated by index.html small script */
+#reading-progress{ transition: width 200ms linear }
+
 /* subtle paper texture via repeating-linear-gradient */
 body::before{
   content: '';
@@ -85,3 +95,15 @@ body::after{
 
 /* bigger serif headline tweak for legato-like feel */
 .serif { font-weight: 700; letter-spacing: -0.02em; }
+
+/* Section headings inspired by Legato: spacious, elegant */
+h1,h2,h3,h4{ color: var(--warmblack) }
+h1.serif{ font-family: 'Italiana', 'Playfair Display', serif; }
+h2{ font-size: clamp(1.1rem, 1.8vw, 1.8rem); font-weight:600; letter-spacing:-0.01em }
+.section-hero-card{ border-left: 4px solid var(--clay) }
+
+/* subtle lifted cards */
+.lifted{ box-shadow: 0 8px 30px rgba(34,32,29,0.06) }
+
+/* small utilities */
+.muted{ color: rgba(34,32,29,0.6) }

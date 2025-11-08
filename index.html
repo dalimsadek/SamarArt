@@ -1,15 +1,36 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr-FR">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Interior Decorator — Portfolio</title>
+    <meta name="description" content="Samar'Art — décoration et architecture d'intérieur. Projets réalisés à Remiremont et partout en France." />
+    <title>Accueil — Samar'Art</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Fonts inspired by the sample: Italiana for large elegant display, Inter for UI -->
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>html{scroll-behavior:smooth}img:is([sizes="auto" i], [sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}</style>
   </head>
   <body class="bg-ivory text-warmblack antialiased">
+    <!-- reading progress bar (will be updated by inline script) -->
+    <div id="reading-progress" class="fixed top-0 left-0 h-1 bg-softgold w-0 z-50"></div>
     <div id="root"></div>
+    <script>
+      // small reading progress updater
+      (function(){
+        const bar = document.getElementById('reading-progress');
+        function update(){
+          const h = document.documentElement;
+          const scrollTop = h.scrollTop || document.body.scrollTop;
+          const docHeight = h.scrollHeight - h.clientHeight;
+          const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+          if(bar) bar.style.width = pct + '%';
+        }
+        document.addEventListener('scroll', update,{passive:true});
+        window.addEventListener('resize', update);
+        update();
+      })();
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
   </html>

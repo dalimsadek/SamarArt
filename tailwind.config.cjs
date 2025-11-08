@@ -3,8 +3,9 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      container: { center: true, padding: '1rem' },
       fontFamily: {
-        serif: ['"Playfair Display"', 'serif'],
+        serif: ['Italiana', '"Playfair Display"', 'serif'],
         sans: ['Inter', 'Lato', 'sans-serif']
       },
       colors: {
