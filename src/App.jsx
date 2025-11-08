@@ -7,6 +7,7 @@ import Design from './components/Design'
 import Testimonials from './components/Testimonials'
 import Furniture from './components/Furniture'
 import Contact from './components/Contact'
+import Divider from './components/Divider'
 import Footer from './components/Footer'
 
 export default function App(){
@@ -21,13 +22,17 @@ export default function App(){
     <div className={`relative overflow-x-hidden ${dark ? 'bg-warmblack text-ivory' : ''}`}>
       <Navbar dark={dark} setDark={setDark} />
       <main className="relative z-10">
-        <Hero />
-        <About />
-        <Portfolio />
+    <Hero />
+    <About />
+    <Divider />
+    <Portfolio />
+    <Divider />
   <Design />
+  <Divider />
   <Furniture />
+  <Divider />
   <Testimonials />
-        <Contact />
+    <Contact />
       </main>
       <Footer />
     </div>

@@ -11,13 +11,15 @@ export default function ProjectModal({project, onClose}){
         <div className="md:col-span-1">
           <img src={project.img} alt={project.title} className="w-full h-full object-cover" />
         </div>
-        <div className="p-6">
+        <div className="p-6 flex flex-col">
           <h3 className="serif text-2xl font-bold">{project.title}</h3>
           <p className="mt-3 text-gray-700">{project.desc}</p>
-          <p className="mt-4 text-sm text-gray-500">Category: {project.category}</p>
-          <div className="mt-6">
-            <button onClick={onClose} className="btn-ghost">Close</button>
+          <p className="mt-4 text-sm text-gray-500">Catégorie: {project.category}</p>
+          <div className="mt-4 flex gap-3">
+            <button onClick={onClose} className="bg-softgold text-warmblack px-4 py-2 rounded">Fermer</button>
+            <a href={project.img} target="_blank" rel="noreferrer" className="btn-ghost">Ouvrir l'image</a>
           </div>
+          <div className="mt-auto text-xs text-gray-400">© Samar'Art — Tous droits réservés</div>
         </div>
       </div>
     </ReactModal>
