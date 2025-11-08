@@ -27,9 +27,10 @@ export default function Hero(){
 
           <div className="absolute inset-0 flex items-center justify-center px-6">
             <div className="text-center max-w-3xl">
-              <div className="inline-block bg-warmblack/70 backdrop-blur-sm px-6 py-6 md:px-10 md:py-8 rounded-xl">
-                <h1 className="serif text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight text-ivory">Des espaces qui racontent une histoire — créés avec âme et équilibre.</h1>
-                <p className="mt-6 text-base md:text-xl lg:text-2xl text-ivory max-w-2xl mx-auto">Un mariage du minimalisme moderne et du savoir-faire artisanal. Intérieurs chaleureusement texturés, pensés pour durer.</p>
+              {/* use same tint as the overlay for a cohesive look; text switched to warmblack for contrast */}
+              <div className="inline-block bg-clay/25 backdrop-blur-sm px-6 py-6 md:px-10 md:py-8 rounded-xl">
+                <h1 className="serif text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight text-warmblack">Des espaces qui racontent une histoire — créés avec âme et équilibre.</h1>
+                <p className="mt-6 text-base md:text-xl lg:text-2xl text-warmblack/90 max-w-2xl mx-auto">Un mariage du minimalisme moderne et du savoir-faire artisanal. Intérieurs chaleureusement texturés, pensés pour durer.</p>
                 <a href="#portfolio" className="inline-block mt-8 bg-softgold text-warmblack py-3 px-6 rounded-full shadow hover:scale-105 transition">Voir mes projets</a>
               </div>
             </div>
