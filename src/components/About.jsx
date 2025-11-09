@@ -5,7 +5,8 @@ export default function About(){
     <section id="about" className="py-20">
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
         <div className="rounded-xl overflow-hidden shadow-lg">
-          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80" alt="portrait" className="w-full h-full object-cover" loading="lazy" />
+          {/* local portrait image: place `samar.jpeg` at project root or in /public — referenced here as absolute path */}
+          <img src="/samar.jpeg" alt="Samar Msadek portrait" className="w-full h-full object-cover" loading="lazy" />
         </div>
         <div>
           <h2 className="serif text-3xl font-bold">Bonjour — je suis Samar Msadek</h2>
