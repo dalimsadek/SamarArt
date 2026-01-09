@@ -6,5 +6,5 @@ import { defineConfig } from 'vite'
 // Use a relative base so the built site works under a custom domain or any path.
 // './' is resilient for GitHub Pages custom domains and other static hosts.
 export default defineConfig({
-  base: './'
+  base: '/'
 })
