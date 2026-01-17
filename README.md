@@ -45,7 +45,7 @@ How to use:
 	```
 2. The workflow I added is `.github/workflows/deploy-gh-pages.yml`. When you push to `main`, GitHub Actions will run `npm ci`, `npm run build` and publish `dist/` to GitHub Pages.
 
-3. In your repository settings -> Pages, choose the branch `gh-pages` (the workflow uses `actions-gh-pages` to publish there) and enable the site. The site will be served at `https://<your-username>.github.io/<repo-name>/` (or via your custom domain if you configure one).
+3. In your repository settings -> Pages, choose the branch `gh-pages` (the workflow uses `actions-gh-pages` to publish there) and enable the site. The site will be served at `https://samart-interior.fr` (custom domain is baked in via CNAME).
 
 Form handling for GitHub Pages (free, no API key)
 ------------------------------------------------

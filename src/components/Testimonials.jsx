@@ -1,11 +1,27 @@
 import React from 'react'
 
 const reviews = [
-  {id:1, img:'https://i.pravatar.cc/120?img=12', name:'Sophie L.', text:"Le décor a transformé notre salle — nos clients parlent encore de l'ambiance.", source:'Google — Le Jaune de Damas'},
-  {id:2, img:'https://i.pravatar.cc/120?img=5', name:"Pierre M.", text:"Samar a su sublimer l'espace en gardant l'âme du lieu.", source:'Client'},
-  {id:3, img:'https://i.pravatar.cc/120?img=20', name:'Aurélie D.', text:"Détails soignés, lumière et matériaux choisis avec goût.", source:'Google'},
-  {id:4, img:'https://i.pravatar.cc/120?img=8', name:'Marc R.', text:"Les retours clients ont été immédiats — chaleur et confort retrouvés.", source:'Avis public'},
-  {id:5, img:'https://i.pravatar.cc/120?img=30', name:'Nadia S.', text:"Un travail professionnel et délicat, très belle collaboration.", source:'Google'}
+  {
+    id: 1,
+    img: 'https://static.wixstatic.com/media/59de7a_8e47e99636874760a36088de9046c894~mv2.jpg/v1/fill/w_240,h_240,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/kam-idris-hYb7kbu4x7E-unsplash.jpg',
+    name: 'J.V',
+    text: 'J’ai fait appel à Léa Balland pour un projet de rénovation d’appartement, en peu de temps elle a su comprendre mes attentes tout en respectant certaines conditions budgétaires. Je ne manquerai pas de refaire appel à elle dans mes futurs projets !',
+    source: 'Client résidentiel'
+  },
+  {
+    id: 2,
+    img: 'https://static.wixstatic.com/media/59de7a_a5227018c008425c85479afe66b202a0~mv2.jpg/v1/fill/w_240,h_240,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/59de7a_a5227018c008425c85479afe66b202a0~mv2.jpg',
+    name: 'C.B',
+    text: 'J’ai fait appel aux services de Léa Architecture d’Intérieur afin qu’elle réalise mon bureau sur mesure. Elle a su prendre en compte mes exigences, tout en apportant sa touche de créativité. Je recommande grandement Léa Balland pour son professionnalisme, sa rigueur et sa gentillesse !',
+    source: 'Bureau sur-mesure'
+  },
+  {
+    id: 3,
+    img: 'https://static.wixstatic.com/media/11062b_60b642e903e5401b898f3e809b17bbac~mv2.jpg/v1/fill/w_240,h_240,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Concepteur%20comparant%20des%20%C3%A9chantillons.jpg',
+    name: 'A.P',
+    text: 'Une vraie partenaire de projet, qui concilie esthétique et contraintes techniques. Process clair et rendu fidèle aux attentes.',
+    source: 'Commerce'
+  }
 ]
 
 export default function Testimonials(){
@@ -19,32 +35,30 @@ export default function Testimonials(){
   }
 
   return (
-    <section className="py-16 bg-ivory">
+    <section id="testimonials" className="py-16 bg-base">
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-between">
-          <h4 className="serif text-xl font-bold">ILS PARLENT DE NOUS</h4>
+          <h4 className="serif text-2xl font-bold tracking-[0.1em] uppercase text-primary">Ils parlent de nous</h4>
           <div className="space-x-2">
-            <button aria-label="left" onClick={()=>scroll(-1)} className="p-2 rounded-md bg-white/80 shadow">◀</button>
-            <button aria-label="right" onClick={()=>scroll(1)} className="p-2 rounded-md bg-white/80 shadow">▶</button>
+            <button aria-label="left" onClick={()=>scroll(-1)} className="p-2.5 rounded-full bg-white/90 border border-line shadow-sm text-primary hover:bg-surface">◀</button>
+            <button aria-label="right" onClick={()=>scroll(1)} className="p-2.5 rounded-full bg-white/90 border border-line shadow-sm text-primary hover:bg-surface">▶</button>
           </div>
         </div>
 
-        <div ref={scrollerRef} className="mt-6 -mx-4 px-4 flex gap-4 overflow-x-auto scroll-smooth scrollbar-hide snap-x snap-mandatory">
+        <div ref={scrollerRef} className="mt-8 -mx-4 px-4 flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide snap-x snap-mandatory">
           {reviews.map(r=> (
-            <article key={r.id} className="min-w-[260px] snap-start bg-white rounded-lg p-4 shadow-md flex-none">
-              <div className="flex items-center gap-3">
-                <img src={r.img} alt={r.name} className="w-12 h-12 rounded-full object-cover border" />
-                <div>
-                  <div className="font-semibold">{r.name}</div>
-                  <div className="text-xs text-gray-500">{r.source}</div>
-                </div>
+            <article key={r.id} className="min-w-[300px] md:min-w-[360px] snap-start bg-surface rounded-2xl p-8 shadow-sm border border-line flex-none flex flex-col items-center text-center">
+              <div className="w-16 h-16 rounded-full overflow-hidden border border-line shadow-sm mb-4">
+                <img src={r.img} alt={r.name} className="w-full h-full object-cover" />
               </div>
-              <p className="mt-3 text-sm italic">“{r.text}”</p>
+              <blockquote className="text-base md:text-lg leading-relaxed text-primary italic">“{r.text}”</blockquote>
+              <p className="mt-4 font-semibold text-primary">{r.name}</p>
+              <p className="text-sm text-muted">{r.source}</p>
             </article>
           ))}
         </div>
 
-        <p className="mt-6 text-sm text-gray-600">Extraits d'avis publics (Google Reviews) et retours clients. Utilisés ici à titre représentatif — merci à tous pour leur confiance.</p>
+        <p className="mt-6 text-sm text-secondary text-center md:text-left">Extraits d'avis publics et retours clients. Merci pour votre confiance.</p>
       </div>
     </section>
   )

@@ -3,52 +3,57 @@
 @tailwind utilities;
 
 :root{
-  --ivory: #F6F2EA;
-  --clay: #C89F88;
-  --sage: #9AAE95;
-  --softgold: #D4B37A;
-  --warmblack: #22201D;
+  /* Palette (Evergreen, Dust Grey, Burgundy, Muted Teal, Dust Grey 2) */
+  --color-bg: #DBD2C8;             /* Dust Grey base */
+  --color-surface: #CFD3CC;        /* Dust Grey 2 for cards */
+  --color-surface-strong: #ffffff; /* light highlights */
+  --color-border: #c3c9c0;
+  --color-text-primary: #0B2B21;   /* Evergreen */
+  --color-text-secondary: #6A5846; /* Muted Teal */
+  --color-muted: #4a5d55;
+  --color-accent: #7A121C;         /* Burgundy for actions */
+  --color-accent-2: #0B2B21;       /* Evergreen as secondary accent */
+  --color-line: var(--color-border);
+
+  /* legacy tokens mapped to palette for tailwind utilities */
+  --bg-base: var(--color-bg);
+  --bg-surface: var(--color-surface);
+  --bg-surface-strong: var(--color-surface-strong);
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --muted: var(--color-muted);
+  --accent: var(--color-accent);
+  --accent-strong: var(--color-accent-2);
+  --decorative: var(--color-accent-2);
+  --line: var(--color-line);
+  --ivory: var(--color-surface-strong);
+  --clay: var(--color-accent);
+  --sage: #6C9A76;
+  --softgold: #DBD2C8;
+  --warmblack: #0B2B21;
 }
 
 html,body,#root{height:100%;}
 body{
-  /* Use DM Sans for body text (imported via Google Fonts), keep Inter as a UI fallback */
-  font-family: 'DM Sans', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background: linear-gradient(180deg, rgba(246,242,234,1) 0%, rgba(238,235,228,1) 100%);
+  font-family: 'Raleway', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  letter-spacing: 0.01em;
 }
 
 /* stronger page rhythm and wider comfortable measure */
-main, .page, .content{ max-width:1200px; margin-left:auto; margin-right:auto; padding-left:1rem; padding-right:1rem }
+main, .page, .content{ width:100%; max-width:1400px; margin-left:auto; margin-right:auto; padding-left:1rem; padding-right:1rem }
 
-/* smooth, subtle hover/interaction style */
-a { color: var(--warmblack); text-decoration: underline; text-underline-offset:3px }
-a:hover{ color: var(--clay) }
+/* smooth, subtle hover/interaction style without underlines */
+a { color: var(--text-primary); text-decoration: none; }
+a:hover{ color: var(--accent-strong);color: #fff;}
 
 /* reading progress bar is updated by index.html small script */
 #reading-progress{ transition: width 200ms linear }
 
-/* subtle paper texture via repeating-linear-gradient */
-body::before{
-  content: '';
-  position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background-image: radial-gradient(rgba(0,0,0,0.01) 1px, transparent 1px);
-  background-size: 60px 60px;
-  opacity: 0.08;
-}
+/* flatten decorative overlays to keep a single background */
+body::before, body::after{ display:none; }
 
-/* Soft shifting fabric-like gradient animation */
-body::after{
-  content: '';
-  position: fixed; inset: 0; pointer-events: none; z-index: -1;
-  background: radial-gradient(ellipse at 10% 10%, rgba(212,179,122,0.06), transparent 20%), radial-gradient(ellipse at 90% 90%, rgba(154,174,149,0.04), transparent 20%);
-  mix-blend-mode: multiply;
-  animation: softShift 12s ease-in-out infinite alternate;
-}
-
-@keyframes softShift{
-  from { transform: translateY(0) scale(1); }
-  to { transform: translateY(-30px) scale(1.03); }
-}
 
 /* subtle parallax helper for hero */
 .parallax {
@@ -100,7 +105,7 @@ body::after{
 .serif { font-weight: 700; letter-spacing: -0.02em; }
 
 /* Section headings inspired by Legato: spacious, elegant */
-h1,h2,h3,h4{ color: var(--warmblack) }
+h1,h2,h3,h4{ color: var(--text-primary) }
 h1.serif{ font-family: 'Italiana', 'Playfair Display', serif; }
 h2{ font-size: clamp(1.1rem, 1.8vw, 1.8rem); font-weight:600; letter-spacing:-0.01em }
 .section-hero-card{ border-left: 4px solid var(--clay) }
@@ -123,4 +128,24 @@ h2{ font-size: clamp(1.1rem, 1.8vw, 1.8rem); font-weight:600; letter-spacing:-0.
 .card-fancy .drop-shadow{ text-shadow: 0 6px 18px rgba(0,0,0,0.35); }
 
 /* small utilities */
-.muted{ color: rgba(34,32,29,0.6) }
+.muted{ color: var(--muted) }
+
+/* semantic helpers for consistent contrast */
+.text-primary{ color: var(--text-primary); }
+.text-secondary{ color: var(--text-secondary); }
+.text-muted{ color: var(--muted); }
+.bg-base{ background: var(--bg-base); }
+.bg-surface{ background: var(--bg-surface); }
+.bg-surface-strong{ background: var(--bg-surface-strong); }
+.border-line{ border-color: var(--line); }
+.shadow-soft{ box-shadow: 0 14px 40px rgba(31,27,23,0.08); }
+
+.btn-primary{ background: var(--accent); color: #fff; }
+.btn-primary:hover{ background: var(--accent-strong);color: #fff; }
+.btn-ghost{ border-color: var(--color-border); color: var(--text-primary); }
+
+@media (prefers-color-scheme: dark){
+  body:not(.light){
+    background: linear-gradient(180deg, var(--bg-base) 0%, #161411 100%);
+  }
+}

@@ -15,11 +15,12 @@ module.exports = {
         sans: ['"DM Sans"', 'Inter', 'Lato', 'sans-serif']
       },
       colors: {
-        clay: '#C89F88',
-        sage: '#9AAE95',
-        ivory: '#F6F2EA',
-        softgold: '#D4B37A',
-        warmblack: '#22201D'
+        // mapped to approved brand palette
+        clay: '#8C5D58',     // warm clay (accent)
+        sage: '#748C70',     // sage green (decorative)
+        ivory: '#D9D9D9',    // light neutral base
+        softgold: '#736D53', // olive / warm gray (secondary)
+        warmblack: '#40130F' // deep brown / wine (dark sections / headings)
       }
     }
   },

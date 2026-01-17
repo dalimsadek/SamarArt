@@ -2,17 +2,17 @@ import React from 'react'
 
 export default function About(){
   return (
-    <section id="about" className="py-20">
-      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
-        <div className="rounded-xl overflow-hidden shadow-lg">
-          {/* portrait image served from Vite `public/` directory; this uses BASE_URL so it works with non-root bases */}
-          <img src={import.meta.env.BASE_URL + 'samar.jpeg'} alt="Samar Msadek portrait" className="w-full h-full object-cover" loading="lazy" />
+    <section id="about" className="py-20 bg-base">
+      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+        <div className="rounded-2xl overflow-hidden shadow-soft border border-line bg-surface">
+          <img src="/samar2.jpeg" alt="Portrait Samar Msadek" className="w-full h-full object-cover" loading="lazy" />
         </div>
         <div>
-          <h2 className="serif text-3xl font-bold">Bonjour — je suis Samar Msadek</h2>
-          <p className="mt-4 text-lg leading-relaxed">Je conçois des intérieurs qui donnent envie d’habiter, pensés et subtilement luxueux. J’allie une sensibilité contemporaine à des matériaux artisanaux — meubles chinés, textiles et finitions réalisés par des artisans. La lumière, la matière et l’équilibre sont au cœur de mon travail.</p>
-          <blockquote className="mt-6 italic border-l-2 pl-4 text-clay">« Nous façonnons des espaces qui se ressentent, pas seulement qui se regardent. »</blockquote>
-          <p className="mt-6">Je collabore avec des clients qui privilégient la longévité aux modes passagères et souhaitent des lieux pour accueillir, se reposer et créer.</p>
+          <p className="serif uppercase tracking-[0.28em] text-sm text-secondary">À propos</p>
+          <h2 className="serif text-3xl md:text-4xl font-bold mt-2">Bienvenue dans mon univers architectural</h2>
+          <p className="mt-5 text-lg leading-relaxed text-secondary">Où les espaces se transforment en toiles d'expression. En tant qu'architecte d'intérieur passionnée, je crée des designs uniques qui reflètent votre histoire.</p>
+          <p className="mt-4 text-secondary">Chaque projet marie style et fonctionnalité, chaque détail est méticuleusement pensé pour dépasser vos attentes. Ensemble, nous donnerons vie à vos rêves.</p>
+          <a href="#contact" className="inline-flex items-center gap-2 mt-6 px-6 py-3 rounded-full bg-[var(--color-accent)] text-white tracking-[0.18em] uppercase text-xs hover:bg-[var(--color-accent-2)] transition shadow-sm">Débuter votre projet</a>
         </div>
       </div>
     </section>
