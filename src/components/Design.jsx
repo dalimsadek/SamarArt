@@ -36,24 +36,24 @@ export default function Design(){
         <h3 className="serif text-3xl font-bold mt-2">Architecture d'intérieur, à votre mesure</h3>
         <p className="mt-4 text-secondary max-w-3xl mx-auto">Du croquis aux finitions, chaque offre est pensée pour s’adapter à votre appartement, maison, commerce ou bureaux.</p>
 
-        <div className="mt-10 -mx-6 px-6">
-          <div className="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none pb-4 scrollbar-hide">
+        <div className="mt-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
             {services.map(item => (
               <div
                 key={item.title}
-                className="min-w-[280px] md:min-w-0 flex-shrink-0 bg-surface rounded-xl shadow-sm border border-line overflow-hidden snap-start"
+                className="bg-surface rounded-xl shadow-sm border border-line overflow-hidden h-full flex flex-col"
               >
-                <div className="h-[260px] w-full overflow-hidden">
+                <div className="w-full aspect-[4/5] overflow-hidden">
                   <img src={item.image} alt={item.title} className="w-full h-full object-cover" loading="lazy" />
                 </div>
-                <div className="p-6 space-y-3">
+                <div className="p-6 flex flex-col gap-3 flex-1 text-left">
                   <h4 className="font-semibold text-primary tracking-[0.1em] uppercase text-sm">{item.title}</h4>
-                  <p className="text-sm text-secondary leading-relaxed">{item.desc}</p>
+                  <p className="text-sm text-secondary leading-relaxed flex-1">{item.desc}</p>
                   <a
                     href="/prestation"
                     className="inline-flex items-center justify-center w-full px-4 py-2.5 rounded-full bg-[var(--color-accent)] text-white tracking-[0.14em] uppercase text-xs hover:bg-[var(--color-accent-2)] transition"
                   >
-                    {item.title}
+                    Découvrir la prestation
                   </a>
                 </div>
               </div>

@@ -32,7 +32,7 @@ export default function AboutPage(){
           <div className="space-y-4">
             <h2 className="serif text-2xl font-bold tracking-[0.18em] uppercase">SAMAR ARCHITECTURE D'INTÉRIEUR</h2>
             <p className="leading-relaxed text-primary">
-              Installée dans les Vosges à Saint-Nabord (88200), Léa Architecture d'Intérieur intervient dans toute la France pour vos projets d'appartements, maisons, commerces et bureaux. Je m'engage à comprendre vos besoins, vous écouter et vous guider tout au long du processus de conception pour que le résultat final réponde à vos attentes.
+              Installée dans les Vosges à Saint-Nabord (88200), Samar Architecture d'Intérieur intervient dans toute la France pour vos projets d'appartements, maisons, commerces et bureaux. Je m'engage à comprendre vos besoins, vous écouter et vous guider tout au long du processus de conception pour que le résultat final réponde à vos attentes.
             </p>
             <p className="leading-relaxed text-primary">
               Soucieuse de la qualité et de la fonctionnalité, je m'assure que chaque espace est optimalement utilisé pour créer un environnement confortable et fonctionnel. Je m'occupe du design, de la création de mobilier, du choix des matériaux et du suivi des travaux jusqu'à la livraison.
@@ -46,7 +46,7 @@ export default function AboutPage(){
           <div className="rounded-2xl overflow-hidden shadow-xl border border-line">
             <img
               src="https://static.wixstatic.com/media/59de7a_f1a5e0f57f0443a586ec570673261951~mv2.jpg"
-              alt="Léa Balland atelier"
+              alt="Samar Msadek atelier"
               className="w-full h-full object-cover"
             />
           </div>
