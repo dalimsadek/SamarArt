@@ -1,18 +1,20 @@
 export const projects = [
   {
     slug: "studio",
-    title: "Studio — Vosges",
+    title: "Projet Cocon d’Ela: ",
     category: "Résidentiel",
     year: "2023",
     location: "Vosges",
     summary:
-      "Studio de 14 m² repensé pour une escapade à deux, volumes optimisés et rangements intégrés.",
+      "Une chambre de bébé douce et organique qui marie bois naturel et terracotta. Un écrin de sérénité ludique sublimé par une fresque murale apaisante pour un éveil tout en délicatesse",
     description:
-      "Projet réalisé en collaboration avec @studiolixivel. Les espaces ont été redimensionnés pour être plus fonctionnels, avec de nombreux rangements pour se sentir chez soi le temps d'un week-end.",
-    hero: "/ela/1.png",
+      "Une chambre de bébé douce et organique qui marie bois naturel et terracotta. Un écrin de sérénité ludique sublimé par une fresque murale apaisante pour un éveil tout en délicatesse",
+    hero: "/ela/1.jpeg",
     gallery: [
-      { src: "/ela/1.png", alt: "Cuisine studio render" },
-      { src: "/ela/2.png", alt: "Espace nuit studio" },
+      { src: "/ela/1.jpeg", alt: "Cuisine studio render" },
+      { src: "/ela/2.jpeg", alt: "Espace nuit studio" },
+      { src: "/ela/3.jpeg", alt: "Espace nuit studio" },
+      { src: "/ela/4.jpeg", alt: "Espace nuit studio" },
     ],
   },
   {
