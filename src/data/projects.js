@@ -68,11 +68,11 @@ export const projects = [
         alt: "Suite balnéo",
       },
       {
-        src: "/dar_mra/6.jpeg",
+        src: "/dar_mra/6.PNG",
         alt: "Suite balnéo",
       },
       {
-        src: "/dar_mra/7.jpeg",
+        src: "/dar_mra/7.PNG",
         alt: "Suite balnéo",
       },
     ],
