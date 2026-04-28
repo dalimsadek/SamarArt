@@ -61,12 +61,12 @@ export default function Design() {
                   <p className="text-sm text-secondary leading-relaxed flex-1">
                     {item.desc}
                   </p>
-                  <a
+                  {/* <a
                     href="/prestation"
                     className="inline-flex items-center justify-center w-full px-4 py-2.5 rounded-full bg-[var(--color-accent)] text-white tracking-[0.14em] uppercase text-xs hover:bg-[var(--color-accent-2)] transition"
                   >
                     Découvrir la prestation
-                  </a>
+                  </a> */}
                 </div>
               </div>
             ))}
