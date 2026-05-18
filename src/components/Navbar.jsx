@@ -64,7 +64,7 @@ export default function Navbar() {
           <img
             src="/samar-interiot_logo.png"
             alt="Sam'Art Interior"
-            className="h-16 w-auto object-contain"
+            className="h-20 w-auto object-contain"
             loading="eager"
           />
         </Link>

@@ -285,8 +285,9 @@ export default function Design() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.12, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true }}
-                className="group flex flex-col"
+                className="group flex flex-col cursor-pointer"
                 style={{ background: 'var(--bg-surface)' }}
+                onClick={() => setActive(s)}
               >
                 {/* Image */}
                 <div className="overflow-hidden" style={{ aspectRatio: '4/5' }}>

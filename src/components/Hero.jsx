@@ -26,7 +26,7 @@ export default function Hero() {
         className="absolute inset-0 will-change-transform"
         ref={imgRef}
         style={{
-          backgroundImage: "url('/page_garde.jpg')",
+          backgroundImage: "url('/page_de_garde_2.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           transform: 'scale(1.06)',

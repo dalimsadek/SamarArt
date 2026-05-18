@@ -16,7 +16,7 @@ export default function Footer() {
               <img
                 src="/samar-interiot_logo.png"
                 alt="Sam'Art Interior"
-                className="h-9 w-auto object-contain brightness-0 invert"
+                className="h-16 w-auto object-contain brightness-0 invert"
                 loading="lazy"
               />
             </Link>
