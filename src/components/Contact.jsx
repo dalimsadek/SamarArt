@@ -1,91 +1,232 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 
-export default function Contact(){
-  const [status, setStatus] = useState({ sending:false, success:null, message: null })
+export default function Contact() {
+  const [status, setStatus] = useState({ sending: false, success: null, message: null })
 
-  async function handleSubmit(e){
+  async function handleSubmit(e) {
     e.preventDefault()
     const form = e.target
-    const payload = { name: form.name.value, email: form.email.value, message: form.message.value }
+    const payload = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value,
+    }
 
-    setStatus({ sending:true, success:null, message: null })
+    setStatus({ sending: true, success: null, message: null })
 
+    // Try Netlify function first
     try {
-      // Try serverless endpoint first (Netlify/Vercel). Use a short timeout to avoid long waits.
       const controller = new AbortController()
-      const id = setTimeout(() => controller.abort(), 2500)
+      const tid = setTimeout(() => controller.abort(), 3000)
       const res = await fetch('/.netlify/functions/sendEmail', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
-        signal: controller.signal
+        signal: controller.signal,
       })
-      clearTimeout(id)
-      const json = await res.json().catch(()=>null)
-      if (res.ok && json && json.ok) {
-        setStatus({ sending:false, success:true, message: 'Message sent — thank you!' })
+      clearTimeout(tid)
+      const json = await res.json().catch(() => null)
+      if (res.ok && json?.ok) {
+        setStatus({ sending: false, success: true, message: 'Message envoyé — merci !' })
         form.reset()
         return
       }
-    } catch (err) {
-      // ignore and fall back to FormSubmit
+    } catch {
+      /* fall through to FormSubmit */
     }
 
-    // Fallback: use formsubmit.co which allows sending form submissions to an email address without server-side code.
-    // It will send a verification email to the recipient the first time. No API key required.
+    // Fallback: FormSubmit API via fetch (no page navigation)
     try {
-      const action = `https://formsubmit.co/${encodeURIComponent('contact@samart-interior.fr')}`
-      const tempForm = document.createElement('form')
-      tempForm.action = action
-      tempForm.method = 'POST'
-      tempForm.style.display = 'none'
-      tempForm.enctype = 'application/x-www-form-urlencoded'
-      Object.keys(payload).forEach(key => {
-        const input = document.createElement('input')
-        input.name = key
-        input.value = payload[key]
-        tempForm.appendChild(input)
+      const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent('contact@samart-interior.fr')}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ ...payload, _captcha: 'false' }),
       })
-      document.body.appendChild(tempForm)
-      tempForm.submit()
-      setStatus({ sending:false, success:true, message: 'Redirecting to form handler — check your email inbox for confirmation.' })
-    } catch (err) {
-      setStatus({ sending:false, success:false, message: 'Unable to submit form. Please email contact@samart-interior.fr directly.' })
+      const json = await res.json().catch(() => null)
+      if (res.ok && json?.success !== 'false') {
+        setStatus({ sending: false, success: true, message: 'Message envoyé — nous vous répondrons rapidement !' })
+        form.reset()
+      } else {
+        throw new Error('form error')
+      }
+    } catch {
+      setStatus({
+        sending: false,
+        success: false,
+        message: "Impossible d'envoyer le message. Écrivez-nous directement à contact@samart-interior.fr",
+      })
     }
   }
 
   return (
-    <section id="contact" className="py-20">
-      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8">
-        <div className="text-secondary">
-          <h4 className="serif text-2xl font-bold text-primary">Débuter votre projet</h4>
-          <p className="mt-3">Racontez-moi vos envies : appartement, maison, commerce ou bureau. Nous cadrerons ensemble les besoins, les délais et l’esthétique recherchée.</p>
-          <div className="mt-6 text-sm">
-            <p>Email: <a href="mailto:contact@samart-interior.fr" className="text-primary hover:text-clay">contact@samart-interior.fr</a></p>
-            <p>Phone: <a href="tel:+33760755972" className="text-clay">+33 7 60 75 59 72</a></p>
-            <p className="mt-4">Instagram: <a href="https://www.instagram.com/samarscorner/" target="_blank" rel="noreferrer" className="text-clay">@samarscorner</a></p>
-            <p className="mt-2">Localisation: Remiremont, France</p>
-          </div>
+    <section id="contact" style={{ background: 'var(--bg)', padding: '7rem 0' }}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
-          <div className="mt-8">
-            <iframe title="map" src="https://www.google.com/maps?q=48.019852,6.610639&z=14&output=embed" width="100%" height="220" className="rounded-md border" loading="lazy" />
+        {/* Header */}
+        <div className="mb-14">
+          <div className="flex items-center gap-3 mb-5">
+            <span className="gold-rule" />
+            <span
+              className="text-[10px] tracking-[0.32em] uppercase font-medium"
+              style={{ color: 'var(--text-muted)', fontFamily: '"DM Sans", sans-serif' }}
+            >
+              Contact
+            </span>
           </div>
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            style={{
+              fontFamily: '"Cormorant Garamond", Georgia, serif',
+              fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+              fontWeight: 300,
+              lineHeight: 1.15,
+              color: 'var(--text)',
+              letterSpacing: '-0.01em',
+            }}
+          >
+            Débuter votre{' '}
+            <em style={{ fontStyle: 'italic' }}>projet</em>
+          </motion.h2>
         </div>
 
-        <div>
-          <form onSubmit={handleSubmit} className="bg-surface p-6 rounded-lg shadow-sm border border-line">
-            <label className="block text-sm">Name</label>
-            <input name="name" required className="w-full border rounded px-3 py-2 mt-2" />
-            <label className="block text-sm mt-4">Email</label>
-            <input name="email" type="email" required className="w-full border rounded px-3 py-2 mt-2" />
-            <label className="block text-sm mt-4">Message</label>
-            <textarea name="message" rows="6" required className="w-full border rounded px-3 py-2 mt-2" />
-            <div className="mt-4 flex items-center justify-between">
-              <button type="submit" disabled={status.sending} className="px-5 py-2 rounded-full bg-[var(--color-accent)] text-white tracking-[0.12em] uppercase text-xs hover:bg-[var(--color-accent-2)] transition">{status.sending ? 'Envoi…' : 'Envoyer'}</button>
-              {status.message && <span className={`text-sm ${status.success ? 'text-green-600' : 'text-red-600'}`}>{status.message}</span>}
+        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-16">
+
+          {/* Left — info */}
+          <motion.div
+            initial={{ opacity: 0, x: -16 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <p
+              className="leading-relaxed"
+              style={{ color: 'var(--text-soft)', fontSize: '0.95rem', lineHeight: 1.8 }}
+            >
+              Racontez-nous vos envies — appartement, maison, commerce ou bureau.
+              Nous cadrerons ensemble les besoins, les délais et l'esthétique recherchée.
+            </p>
+
+            <div className="space-y-4" style={{ borderTop: '1px solid var(--border)', paddingTop: '2rem' }}>
+              {[
+                ['Email', 'contact@samart-interior.fr', 'mailto:contact@samart-interior.fr'],
+                ['Téléphone', '+33 7 60 75 59 72', 'tel:+33760755972'],
+                ['Instagram', '@samarscorner', 'https://www.instagram.com/samarscorner/'],
+                ['Localisation', 'Remiremont, France', null],
+              ].map(([label, value, href]) => (
+                <div key={label} className="flex gap-6">
+                  <span
+                    className="shrink-0 w-24 text-[10px] tracking-[0.2em] uppercase font-medium"
+                    style={{ color: 'var(--text-muted)', fontFamily: '"DM Sans", sans-serif', paddingTop: '2px' }}
+                  >
+                    {label}
+                  </span>
+                  {href ? (
+                    <a
+                      href={href}
+                      target={href.startsWith('http') ? '_blank' : undefined}
+                      rel={href.startsWith('http') ? 'noreferrer' : undefined}
+                      className="transition-colors duration-200"
+                      style={{ color: 'var(--text)', fontSize: '0.9rem' }}
+                      onMouseEnter={e => e.currentTarget.style.color = 'var(--gold)'}
+                      onMouseLeave={e => e.currentTarget.style.color = 'var(--text)'}
+                    >
+                      {value}
+                    </a>
+                  ) : (
+                    <span style={{ color: 'var(--text)', fontSize: '0.9rem' }}>{value}</span>
+                  )}
+                </div>
+              ))}
             </div>
-            <p className="mt-3 text-xs text-muted">If server-side email is not configured, your mail client will open as a fallback and the message will be sent from your email.</p>
-          </form>
+
+            {/* Map */}
+            <div className="overflow-hidden" style={{ borderRadius: '2px', border: '1px solid var(--border)' }}>
+              <iframe
+                title="Localisation Sam'Art"
+                src="https://www.google.com/maps?q=48.019852,6.610639&z=14&output=embed"
+                width="100%"
+                height="220"
+                loading="lazy"
+                style={{ display: 'block' }}
+              />
+            </div>
+          </motion.div>
+
+          {/* Right — form */}
+          <motion.div
+            initial={{ opacity: 0, x: 16 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-5 p-8"
+              style={{
+                background: 'var(--ivory)',
+                border: '1px solid var(--border)',
+                borderRadius: '2px',
+              }}
+            >
+              <div>
+                <label className="form-label">Nom &amp; prénom</label>
+                <input
+                  name="name"
+                  required
+                  className="form-input"
+                  placeholder="Votre nom complet"
+                />
+              </div>
+
+              <div>
+                <label className="form-label">Adresse e-mail</label>
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  className="form-input"
+                  placeholder="vous@email.fr"
+                />
+              </div>
+
+              <div>
+                <label className="form-label">Votre message</label>
+                <textarea
+                  name="message"
+                  rows={6}
+                  required
+                  className="form-input"
+                  style={{ resize: 'vertical' }}
+                  placeholder="Décrivez votre projet, vos envies, votre espace…"
+                />
+              </div>
+
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-1">
+                <button
+                  type="submit"
+                  disabled={status.sending}
+                  className="btn-gold self-start"
+                  style={{ opacity: status.sending ? 0.6 : 1 }}
+                >
+                  {status.sending ? 'Envoi en cours…' : 'Envoyer le message'}
+                </button>
+
+                {status.message && (
+                  <p
+                    className="text-sm"
+                    style={{ color: status.success ? '#4a7c59' : '#c0392b' }}
+                  >
+                    {status.message}
+                  </p>
+                )}
+              </div>
+            </form>
+          </motion.div>
         </div>
       </div>
     </section>

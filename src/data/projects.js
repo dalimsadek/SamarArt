@@ -1,203 +1,132 @@
+// Gallery item types: 'avant' | '3d' | 'reel'
 export const projects = [
   {
-    slug: "studio",
-    title: "Projet Cocon d’Ela: ",
+    slug: "cocon-dela",
+    title: "Cocon d'Ela",
     category: "Résidentiel",
-    year: "2026",
+    year: "2025",
     location: "Vosges",
-    summary:
-      "Une chambre de bébé douce et organique qui marie bois naturel et terracotta. Un écrin de sérénité ludique sublimé par une fresque murale apaisante pour un éveil tout en délicatesse",
-    description:
-      "Une chambre de bébé douce et organique qui marie bois naturel et terracotta. Un écrin de sérénité ludique sublimé par une fresque murale apaisante pour un éveil tout en délicatesse",
-    hero: "/ela/1.jpeg",
+    summary: "Une chambre de bébé douce et organique qui marie bois naturel et terracotta. Un écrin de sérénité ludique sublimé par une fresque murale apaisante.",
+    description: "Une chambre de bébé douce et organique qui marie bois naturel et terracotta. Un écrin de sérénité ludique sublimé par une fresque murale apaisante.",
+    hero: "/Projet Cocon d’Ela/reel_1.jpeg",
     gallery: [
-      { src: "/ela/1.jpeg", alt: "" },
-      { src: "/ela/2.jpeg", alt: "" },
-      { src: "/ela/3.jpeg", alt: "" },
-      { src: "/ela/4.jpeg", alt: "" },
+      { src: "/Projet Cocon d’Ela/avant.jpeg",  alt: "Avant",   type: "avant" },
+      { src: "/Projet Cocon d’Ela/3D_1.jpeg",   alt: "3D",      type: "3d" },
+      { src: "/Projet Cocon d’Ela/3D_2.jpeg",   alt: "3D",      type: "3d" },
+      { src: "/Projet Cocon d’Ela/reel_1.jpeg", alt: "Réalisé", type: "reel" },
+      { src: "/Projet Cocon d’Ela/reel_2.jpeg", alt: "Réalisé", type: "reel" },
     ],
   },
   {
-    slug: "arnor-mont-paradis",
-    title: "Projet Reflet Serein",
+    slug: "jaune-de-damas",
+    title: "Le Jaune de Damas",
+    category: "Commercial",
+    year: "2024",
+    location: "Metz",
+    summary: "Un espace scindé en deux ambiances immersives : une partie lumineuse inspirée des terrasses syriennes et un salon intime habillé d'un tapis oriental suspendu.",
+    description: "Ce projet scinde l'espace en deux ambiances immersives. D'un côté, une partie lumineuse inspirée des terrasses syriennes, mêlant murs striés et végétation pour une clarté solaire. De l'autre, un coin salon plus intime, habillé par un véritable tapis oriental suspendu en majesté dans une alcôve, créant un dialogue élégant entre tradition textile et design contemporain.",
+    hero: "/Le jaune de Damas/reel_1.jpeg",
+    gallery: [
+      { src: "/Le jaune de Damas/avant_1.jpeg", alt: "Avant",   type: "avant" },
+      { src: "/Le jaune de Damas/avant_2.jpeg", alt: "Avant",   type: "avant" },
+      { src: "/Le jaune de Damas/reel_1.jpeg",  alt: "Réalisé", type: "reel" },
+      { src: "/Le jaune de Damas/reel_2.jpeg",  alt: "Réalisé", type: "reel" },
+      { src: "/Le jaune de Damas/reel_3.jpeg",  alt: "Réalisé", type: "reel" },
+    ],
+  },
+  {
+    slug: "reflet-serein",
+    title: "Reflet Serein",
+    category: "Résidentiel",
+    year: "2024",
+    location: "Vosges",
+    summary: "Une entrée repensée comme un écrin de douceur et de clarté. Soubassements classiques, mobilier minimaliste, accueil fluide et lumineux.",
+    description: "Une entrée repensée comme un écrin de douceur et de clarté. Ce projet allie l'élégance des soubassements classiques à un mobilier minimaliste pour un accueil fluide, lumineux et parfaitement organisé.",
+    hero: "/Reflet Serein/reel_1.jpeg",
+    gallery: [
+      { src: "/Reflet Serein/avant_1.jpeg", alt: "Avant",   type: "avant" },
+      { src: "/Reflet Serein/reel_1.jpeg",  alt: "Réalisé", type: "reel" },
+      { src: "/Reflet Serein/reel_2.jpeg",  alt: "Réalisé", type: "reel" },
+      { src: "/Reflet Serein/reel_3.jpeg",  alt: "Réalisé", type: "reel" },
+      { src: "/Reflet Serein/reel_4.jpeg",  alt: "Réalisé", type: "reel" },
+    ],
+  },
+  {
+    slug: "neo-nature",
+    title: "Néo-Nature",
+    category: "Résidentiel",
+    year: "2024",
+    location: "Nancy",
+    summary: "Une pièce de vie où l'élégance du noyer rencontre des matières organiques. Courbes sculpturales et textures brutes pour une atmosphère moderne et chaleureuse.",
+    description: "Une pièce de vie où l'élégance du noyer rencontre des matières organiques. Ce projet mise sur des courbes sculpturales et des textures brutes pour une atmosphère moderne, chaleureuse et habitée.",
+    hero: "/Néo-Nature/reel_1.jpeg",
+    gallery: [
+      { src: "/Néo-Nature/avant_1.jpeg", alt: "Avant",   type: "avant" },
+      { src: "/Néo-Nature/avant_2.jpeg", alt: "Avant",   type: "avant" },
+      { src: "/Néo-Nature/reel_1.jpeg",  alt: "Réalisé", type: "reel" },
+      { src: "/Néo-Nature/reel_2.jpeg",  alt: "Réalisé", type: "reel" },
+      { src: "/Néo-Nature/reel_3.jpeg",  alt: "Réalisé", type: "reel" },
+      { src: "/Néo-Nature/reel_4.jpeg",  alt: "Réalisé", type: "reel" },
+      { src: "/Néo-Nature/reel_5.jpeg",  alt: "Réalisé", type: "reel" },
+    ],
+  },
+  {
+    slug: "maison-mere",
+    title: "Maison Mère",
+    category: "Résidentiel",
+    year: "2024",
+    location: "Vosges",
+    summary: "Un espace de vie fluide jouant sur les contrastes : chaleur d'un décor de pierre, lignes modernes et touches de bois naturel dans une ambiance douce et équilibrée.",
+    description: "Un espace de vie fluide qui joue sur les contrastes : la chaleur visuelle d'un décor de pierre s'allie à des lignes modernes et des touches de bois naturel. Une conception optimisée où cuisine, repas et détente cohabitent dans une ambiance douce, équilibrée et accueillante.",
+    hero: "/Maison Mère/reel_1.jpeg",
+    gallery: [
+      { src: "/Maison Mère/avant_1.jpeg", alt: "Avant",   type: "avant" },
+      { src: "/Maison Mère/avant_2.jpeg", alt: "Avant",   type: "avant" },
+      { src: "/Maison Mère/reel_1.jpeg",  alt: "Réalisé", type: "reel" },
+      { src: "/Maison Mère/reel_2.jpeg",  alt: "Réalisé", type: "reel" },
+      { src: "/Maison Mère/reel_3.jpeg",  alt: "Réalisé", type: "reel" },
+      { src: "/Maison Mère/reel_4.jpeg",  alt: "Réalisé", type: "reel" },
+    ],
+  },
+  {
+    slug: "arabesque-moderne",
+    title: "Arabesque Moderne",
     category: "Résidentiel",
     year: "2024",
     location: "Metz",
-    summary: "Un salon ouvert qui équilibre chaleur et lignes graphiques.",
-    description:
-      "Volumes lumineux, palette minérale et lignes graphiques pour un salon qui reste chaleureux et accueillant.",
-    hero: "/Fatma/1.jpeg",
+    summary: "Une fusion entre élégance contemporaine et codes architecturaux arabesques. Arche majestueuse, tapis kilim, suspensions en fer forgé et calligraphie murale.",
+    description: "Ce projet fusionne l'élégance contemporaine et les codes architecturaux arabesques. L'entrée épurée s'efface devant une majestueuse arche ouverte, dévoilant un salon chaleureux. Le design épuré des canapés dialogue avec la richesse de l'artisanat : un grand tapis kilim, des suspensions en fer forgé, une calligraphie murale et des boiseries ciselées.",
+    hero: "/Arabesque Moderne/reel_1.jpeg",
     gallery: [
-      { src: "/Fatma/1.jpeg", alt: "Salon Mont Paradis" },
-      { src: "/Fatma/2.jpeg", alt: "Salon Mont Paradis" },
-      { src: "/Fatma/3.jpeg", alt: "Salon Mont Paradis" },
-      { src: "/Fatma/4.jpeg", alt: "Salon Mont Paradis" },
-      { src: "/Fatma/5.jpeg", alt: "Salon Mont Paradis" },
+      { src: "/Arabesque Moderne/avant_1.jpeg", alt: "Avant",   type: "avant" },
+      { src: "/Arabesque Moderne/avant_2.jpeg", alt: "Avant",   type: "avant" },
+      { src: "/Arabesque Moderne/3D.jpeg",      alt: "3D",      type: "3d" },
+      { src: "/Arabesque Moderne/reel_1.jpeg",  alt: "Réalisé", type: "reel" },
+      { src: "/Arabesque Moderne/reel_2.jpeg",  alt: "Réalisé", type: "reel" },
+      { src: "/Arabesque Moderne/reel_3.jpeg",  alt: "Réalisé", type: "reel" },
+      { src: "/Arabesque Moderne/reel_4.jpeg",  alt: "Réalisé", type: "reel" },
+      { src: "/Arabesque Moderne/reel_5.jpeg",  alt: "Réalisé", type: "reel" },
     ],
   },
   {
-    slug: "arnor-bali-balneo",
-    title: "Projet Reflet Serein",
-    category: "Hospitality",
-    year: "2024",
-    location: "Bali",
-    summary:
-      "Une entrée repensée comme un écrin de douceur et de clarté. Ce projet allie l'élégance des soubassements classiques à un mobilier minimaliste pour un accueil fluide, lumineux et parfaitement organisé.",
-    description:
-      "Une entrée repensée comme un écrin de douceur et de clarté. Ce projet allie l'élégance des soubassements classiques à un mobilier minimaliste pour un accueil fluide, lumineux et parfaitement organisé.",
-    hero: "/dar_mra/1.jpeg",
+    slug: "elixir",
+    title: "Élixir",
+    category: "Commercial",
+    year: "2025",
+    location: "France",
+    summary: "Un concept de Head Spa alliant pureté et haute technologie dans un cadre zen. Matières minérales, lumières douces et mobilier ergonomique aux tons nudes.",
+    description: "Un concept de Head Spa alliant pureté et haute technologie dans un cadre zen. L'espace se définit par un mélange de matières minérales, de lumières douces et de mobiliers ergonomiques aux tons nudes. Entre le miroir circulaire rétroéclairé et les vasques en pierre naturelle, chaque détail est une invitation à la sérénité et au renouveau.",
+    hero: "/Élixir/reel_1.jpeg",
     gallery: [
-      {
-        src: "/dar_mra/1.jpeg",
-        alt: "Entrée Reflet Serein",
-      },
-      {
-        src: "/dar_mra/2.jpeg",
-        alt: "Entrée Reflet Serein",
-      },
-      {
-        src: "/dar_mra/3.jpeg",
-        alt: "Entrée Reflet Serein",
-      },
-      {
-        src: "/dar_mra/4.jpeg",
-        alt: "Entrée Reflet Serein",
-      },
-      {
-        src: "/dar_mra/5.jpeg",
-        alt: "Suite balnéo",
-      },
-      {
-        src: "/dar_mra/6.PNG",
-        alt: "Suite balnéo",
-      },
-      {
-        src: "/dar_mra/7.PNG",
-        alt: "Suite balnéo",
-      },
+      { src: "/Élixir/avant_1.jpeg", alt: "Avant",   type: "avant" },
+      { src: "/Élixir/avant_2.jpeg", alt: "Avant",   type: "avant" },
+      { src: "/Élixir/reel_1.jpeg",  alt: "Réalisé", type: "reel" },
+      { src: "/Élixir/reel_2.jpeg",  alt: "Réalisé", type: "reel" },
+      { src: "/Élixir/reel_3.jpeg",  alt: "Réalisé", type: "reel" },
     ],
   },
-  // {
-  //   slug: "arnor-bellevue",
-  //   title: "Projet ARNOR — Bellevue",
-  //   category: "Résidentiel",
-  //   year: "2023",
-  //   location: "Strasbourg",
-  //   summary: "Volumes lumineux, palette minérale et détails épurés.",
-  //   description:
-  //     "Espace de vie aéré qui marie lignes épurées et matières texturées pour une élégance calme.",
-  //   hero: "https://static.wixstatic.com/media/59de7a_0060b1b303a442e785dd3675d3f81173~mv2.jpg",
-  //   gallery: [
-  //     {
-  //       src: "https://static.wixstatic.com/media/59de7a_0060b1b303a442e785dd3675d3f81173~mv2.jpg",
-  //       alt: "Séjour Bellevue",
-  //     },
-  //   ],
-  // },
-  // {
-  //   slug: "armont",
-  //   title: "Projet ARMONT",
-  //   category: "Résidentiel",
-  //   year: "2023",
-  //   location: "Nancy",
-  //   summary: "Pièce de vie réchauffée par le bois et la lumière naturelle.",
-  //   description:
-  //     "Une pièce de vie conviviale où bois, lumière naturelle et textiles doux structurent l'ambiance.",
-  //   hero: "https://static.wixstatic.com/media/59de7a_f143208d265d4841925fb6c4088495c7~mv2.jpg",
-  //   gallery: [
-  //     {
-  //       src: "https://static.wixstatic.com/media/59de7a_f143208d265d4841925fb6c4088495c7~mv2.jpg",
-  //       alt: "Salon Armont",
-  //     },
-  //   ],
-  // },
-  // {
-  //   slug: "gouttridos",
-  //   title: "Projet GOUTTRIDOS",
-  //   category: "Résidentiel",
-  //   year: "2022",
-  //   location: "Nancy",
-  //   summary: "Cuisine conviviale, mix d’inox et de pierre texturée.",
-  //   description:
-  //     "Cuisine conçue comme une pièce à vivre : rythmes inox, pierre texturée et convivialité.",
-  //   hero: "https://static.wixstatic.com/media/59de7a_f2964c5f7730446eae8cad04ef7d4b04~mv2.jpg",
-  //   gallery: [
-  //     {
-  //       src: "https://static.wixstatic.com/media/59de7a_f2964c5f7730446eae8cad04ef7d4b04~mv2.jpg",
-  //       alt: "Cuisine Gouttridos",
-  //     },
-  //   ],
-  // },
-  // {
-  //   slug: "la-croisette",
-  //   title: "Projet LA CROISETTE",
-  //   category: "Hospitality",
-  //   year: "2022",
-  //   location: "Cannes",
-  //   summary: "Suite d’hôtel contemporaine, contraste clair-obscur.",
-  //   description:
-  //     "Suite d'hôtel où contrastes clair-obscur et lignes tendues dessinent une atmosphère feutrée.",
-  //   hero: "https://static.wixstatic.com/media/59de7a_3ba6df34cab8481885e20750b914182f~mv2.png",
-  //   gallery: [
-  //     {
-  //       src: "https://static.wixstatic.com/media/59de7a_3ba6df34cab8481885e20750b914182f~mv2.png",
-  //       alt: "Suite La Croisette",
-  //     },
-  //   ],
-  // },
-  // {
-  //   slug: "les-sorbiers",
-  //   title: "Projet LES SORBIERS",
-  //   category: "Résidentiel",
-  //   year: "2024",
-  //   location: "Vosges",
-  //   summary: "Espace salon-salle à manger dans des tons sauge et crème.",
-  //   description:
-  //     "Ambiance douce sauge et crème, boiseries légères et lumière tamisée pour un salon salle à manger apaisé.",
-  //   hero: "https://static.wixstatic.com/media/59de7a_b07007103b87467dbc1c682ec4ad6471~mv2.png",
-  //   gallery: [
-  //     {
-  //       src: "https://static.wixstatic.com/media/59de7a_b07007103b87467dbc1c682ec4ad6471~mv2.png",
-  //       alt: "Salon Les Sorbiers",
-  //     },
-  //   ],
-  // },
-  // {
-  //   slug: "raugraff",
-  //   title: "Projet RAUGRAFF",
-  //   category: "Résidentiel",
-  //   year: "2023",
-  //   location: "Metz",
-  //   summary: "Chambre épurée, lumière douce et textiles tactiles.",
-  //   description:
-  //     "Chambre minimaliste où la lumière diffuse et les textiles tactiles créent un cocon sobre.",
-  //   hero: "https://static.wixstatic.com/media/59de7a_131d81bf8b9046a79dfc40b8d11900ae~mv2.png",
-  //   gallery: [
-  //     {
-  //       src: "https://static.wixstatic.com/media/59de7a_131d81bf8b9046a79dfc40b8d11900ae~mv2.png",
-  //       alt: "Chambre Raugraff",
-  //     },
-  //   ],
-  // },
-  // {
-  //   slug: "studio-parisien",
-  //   title: "Studio Parisien",
-  //   category: "Bureaux",
-  //   year: "2021",
-  //   location: "Paris",
-  //   summary: "Studio créatif parisien, esprit atelier et lignes sobres.",
-  //   description:
-  //     "Esprit atelier, cloisons vitrées et palette sobre pour un studio créatif au coeur de Paris.",
-  //   hero: "https://static.wixstatic.com/media/59de7a_e4f1e781e0eb4e879570089eb0514ef9~mv2.jpg",
-  //   gallery: [
-  //     {
-  //       src: "https://static.wixstatic.com/media/59de7a_e4f1e781e0eb4e879570089eb0514ef9~mv2.jpg",
-  //       alt: "Studio Parisien",
-  //     },
-  //   ],
-  // },
-];
+]
 
 export function getProjectBySlug(slug) {
-  return projects.find((p) => p.slug === slug);
+  return projects.find(p => p.slug === slug)
 }

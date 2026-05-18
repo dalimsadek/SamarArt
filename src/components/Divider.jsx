@@ -1,10 +1,26 @@
 import React from 'react'
 
-export default function Divider({className=''}){
+export default function Divider({ className = '' }) {
   return (
-    <div className={`my-12 ${className}`} aria-hidden>
-      <svg viewBox="0 0 800 40" className="w-full h-10" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 20 C100 5 200 35 300 20 C400 5 500 35 600 20 C700 5 800 35 800 35" fill="none" stroke="var(--line)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <div
+      className={`wave-divider ${className}`}
+      aria-hidden
+      style={{ overflow: 'hidden', lineHeight: 0 }}
+    >
+      <svg
+        viewBox="0 0 1200 40"
+        className="w-full"
+        style={{ height: '40px', display: 'block' }}
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0 20 C150 8 300 32 450 20 C600 8 750 32 900 20 C1050 8 1150 28 1200 20"
+          fill="none"
+          stroke="var(--border)"
+          strokeWidth="1"
+          strokeLinecap="round"
+        />
       </svg>
     </div>
   )

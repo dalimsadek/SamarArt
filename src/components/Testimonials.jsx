@@ -1,67 +1,178 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 
 const reviews = [
   {
     id: 1,
-    img: 'https://static.wixstatic.com/media/59de7a_8e47e99636874760a36088de9046c894~mv2.jpg/v1/fill/w_240,h_240,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/kam-idris-hYb7kbu4x7E-unsplash.jpg',
-    name: 'J.V',
-    text: 'J’ai fait appel à Samar Msadek pour un projet de rénovation d’appartement, en peu de temps elle a su comprendre mes attentes tout en respectant certaines conditions budgétaires. Je ne manquerai pas de refaire appel à elle dans mes futurs projets !',
-    source: 'Client résidentiel'
+    name: null,
+    source: 'Conception complète — Salon & Cuisine',
+    text: "Nous avons fait appel à Samar pour repenser entièrement notre salon et notre cuisine. Elle a su optimiser l'espace avec un plan très fonctionnel et proposer une ambiance à la fois chaleureuse et élégante. La 3D nous a beaucoup aidés à nous projeter, et la shopping list était très claire. Le résultat est fidèle à nos attentes, voire au-delà.",
   },
   {
     id: 2,
-    img: 'https://static.wixstatic.com/media/59de7a_a5227018c008425c85479afe66b202a0~mv2.jpg/v1/fill/w_240,h_240,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/59de7a_a5227018c008425c85479afe66b202a0~mv2.jpg',
-    name: 'C.B',
-    text: 'J’ai fait appel aux services de Léa Architecture d’Intérieur afin qu’elle réalise mon bureau sur mesure. Elle a su prendre en compte mes exigences, tout en apportant sa touche de créativité. Je recommande grandement Samar Msadek pour son professionnalisme, sa rigueur et sa gentillesse !',
-    source: 'Bureau sur-mesure'
+    name: 'Noura H.',
+    source: 'Saint-Étienne-lès-Remiremont',
+    text: "Un immense merci à Samar pour son travail remarquable sur le plan de mon salon ! Elle a su parfaitement cerner mes goûts et mes attentes. Le résultat est magnifique, tout à fait dans le style que je cherchais, et honnêtement, cela dépasse même ce que j'avais imaginé. Je suis ravie.",
   },
   {
     id: 3,
-    img: 'https://static.wixstatic.com/media/11062b_60b642e903e5401b898f3e809b17bbac~mv2.jpg/v1/fill/w_240,h_240,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Concepteur%20comparant%20des%20%C3%A9chantillons.jpg',
-    name: 'A.P',
-    text: 'Une vraie partenaire de projet, qui concilie esthétique et contraintes techniques. Process clair et rendu fidèle aux attentes.',
-    source: 'Commerce'
-  }
+    name: 'Julie M.',
+    source: 'Nancy',
+    text: "J'ai réservé un coaching déco pour mon séjour et cela m'a vraiment débloquée. Samar m'a donné des conseils précis sur l'agencement, les couleurs et le mobilier. J'ai pu refaire mon intérieur en toute confiance, sans faire d'erreurs. Un vrai gain de temps et d'énergie.",
+  },
+  {
+    id: 4,
+    name: 'Ines.',
+    source: 'Remiremont',
+    text: "Samar est très professionnelle, à l'écoute et force de proposition. Elle a su respecter notre budget tout en apportant une vraie valeur ajoutée esthétique. Le projet a été fluide du début à la fin.",
+  },
 ]
 
-export default function Testimonials(){
+export default function Testimonials() {
   const scrollerRef = React.useRef(null)
 
-  const scroll = (dir=1)=>{
+  const scroll = (dir = 1) => {
     const el = scrollerRef.current
-    if(!el) return
-    const amount = el.clientWidth * 0.7
-    el.scrollBy({left: dir * amount, behavior:'smooth'})
+    if (!el) return
+    el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: 'smooth' })
   }
 
   return (
-    <section id="testimonials" className="py-16 bg-base">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <h4 className="serif text-2xl font-bold tracking-[0.1em] uppercase text-primary">Ils parlent de nous</h4>
-          <div className="hidden sm:flex space-x-2">
-            <button aria-label="left" onClick={()=>scroll(-1)} className="p-2.5 rounded-full bg-white/90 border border-line shadow-sm text-primary hover:bg-surface">◀</button>
-            <button aria-label="right" onClick={()=>scroll(1)} className="p-2.5 rounded-full bg-white/90 border border-line shadow-sm text-primary hover:bg-surface">▶</button>
+    <section
+      id="testimonials"
+      style={{ background: 'var(--bg-surface)', padding: '7rem 0' }}
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+
+        {/* Header */}
+        <div className="flex items-end justify-between mb-14">
+          <div>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="gold-rule" />
+              <span
+                className="text-[10px] tracking-[0.32em] uppercase font-medium"
+                style={{ color: 'var(--text-muted)', fontFamily: '"DM Sans", sans-serif' }}
+              >
+                Témoignages
+              </span>
+            </div>
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              style={{
+                fontFamily: '"Cormorant Garamond", Georgia, serif',
+                fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+                fontWeight: 300,
+                lineHeight: 1.15,
+                color: 'var(--text)',
+                letterSpacing: '-0.01em',
+              }}
+            >
+              Témoignages{' '}
+              <em style={{ fontStyle: 'italic' }}>clients</em>
+            </motion.h2>
+          </div>
+
+          {/* Nav arrows — desktop */}
+          <div className="hidden sm:flex items-center gap-2">
+            <button
+              aria-label="Précédent"
+              onClick={() => scroll(-1)}
+              className="w-10 h-10 flex items-center justify-center transition-all duration-200"
+              style={{
+                border: '1px solid var(--border)',
+                borderRadius: '9999px',
+                color: 'var(--text-muted)',
+                background: 'var(--ivory)',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--gold)'; e.currentTarget.style.color = 'var(--gold)' }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-muted)' }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M19 12H5M12 19l-7-7 7-7" /></svg>
+            </button>
+            <button
+              aria-label="Suivant"
+              onClick={() => scroll(1)}
+              className="w-10 h-10 flex items-center justify-center transition-all duration-200"
+              style={{
+                border: '1px solid var(--border)',
+                borderRadius: '9999px',
+                color: 'var(--text-muted)',
+                background: 'var(--ivory)',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--gold)'; e.currentTarget.style.color = 'var(--gold)' }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-muted)' }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+            </button>
           </div>
         </div>
 
+        {/* Cards scroller */}
         <div
           ref={scrollerRef}
-          className="mt-8 -mx-4 px-4 flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible scroll-smooth scrollbar-hide snap-x snap-mandatory md:snap-none"
+          className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 overflow-x-auto scrollbar-hide snap-gallery pb-2"
         >
-          {reviews.map(r=> (
-            <article key={r.id} className="min-w-[260px] sm:min-w-[300px] md:min-w-0 snap-start bg-surface rounded-2xl p-8 shadow-sm border border-line flex-none md:flex-auto flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-full overflow-hidden border border-line shadow-sm mb-4">
-                <img src={r.img} alt={r.name} className="w-full h-full object-cover" />
+          {reviews.map((r, i) => (
+            <motion.article
+              key={r.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.12, duration: 0.7 }}
+              viewport={{ once: true }}
+              className="testimonial-card flex-none md:flex-auto"
+              style={{ minWidth: '280px' }}
+            >
+              {/* Big decorative quote — positioned in CSS via ::before */}
+              <div className="pt-8 flex flex-col gap-4 relative z-10">
+                <blockquote
+                  style={{
+                    fontFamily: '"Cormorant Garamond", Georgia, serif',
+                    fontSize: '1.05rem',
+                    fontWeight: 300,
+                    fontStyle: 'italic',
+                    color: 'var(--text)',
+                    lineHeight: 1.75,
+                  }}
+                >
+                  "{r.text}"
+                </blockquote>
+
+                <div style={{ height: '1px', background: 'var(--border)', marginTop: '0.5rem' }} />
+
+                <div className="flex items-center gap-3">
+                  <div
+                    className="w-7 h-7 flex items-center justify-center shrink-0"
+                    style={{ border: '1px solid var(--gold-pale)', borderRadius: '9999px' }}
+                  >
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                    </svg>
+                  </div>
+                  <div>
+                    {r.name && (
+                      <p style={{ fontWeight: 500, fontSize: '0.85rem', color: 'var(--text)' }}>
+                        {r.name}
+                      </p>
+                    )}
+                    <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', letterSpacing: '0.08em' }}>
+                      {r.source}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <blockquote className="text-base md:text-lg leading-relaxed text-primary italic">“{r.text}”</blockquote>
-              <p className="mt-4 font-semibold text-primary">{r.name}</p>
-              <p className="text-sm text-muted">{r.source}</p>
-            </article>
+            </motion.article>
           ))}
         </div>
 
-        <p className="mt-6 text-sm text-secondary text-center md:text-left">Extraits d'avis publics et retours clients. Merci pour votre confiance.</p>
+        <p
+          className="mt-8 text-center"
+          style={{ fontSize: '0.72rem', color: 'var(--text-muted)', letterSpacing: '0.08em' }}
+        >
+          Extraits d'avis clients — merci pour votre confiance.
+        </p>
       </div>
     </section>
   )

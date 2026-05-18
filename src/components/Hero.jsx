@@ -1,75 +1,148 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 export default function Hero() {
+  const imgRef = useRef(null)
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (!imgRef.current) return
+      const y = window.scrollY
+      imgRef.current.style.transform = `scale(1.06) translateY(${y * 0.18}px)`
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center bg-base"
-      style={{ paddingTop: "6rem" }}
+      className="relative w-full overflow-hidden"
+      style={{ height: '100svh', minHeight: '600px' }}
     >
+      {/* Background image with subtle parallax */}
+      <div
+        className="absolute inset-0 will-change-transform"
+        ref={imgRef}
+        style={{
+          backgroundImage: "url('/page_garde.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          transform: 'scale(1.06)',
+        }}
+      />
+
+      {/* Gradient overlay — stronger at bottom for text legibility */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(26,23,21,0.3) 0%, rgba(26,23,21,0.15) 40%, rgba(26,23,21,0.6) 80%, rgba(26,23,21,0.78) 100%)',
+        }}
+      />
+
+      {/* Top-left micro label */}
+      <motion.div
+        initial={{ opacity: 0, x: -12 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.4, duration: 0.8 }}
+        className="absolute top-[88px] left-8 lg:left-14"
+      >
+        <span
+          className="text-[10px] tracking-[0.3em] uppercase"
+          style={{ color: 'rgba(255,255,255,0.6)', fontFamily: '"DM Sans", sans-serif' }}
+        >
+          Décoration d'Intérieur
+        </span>
+      </motion.div>
+
+      {/* Bottom-right stats */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="w-full"
+        transition={{ delay: 1.3, duration: 0.8 }}
+        className="absolute bottom-10 right-8 lg:right-14 flex gap-8"
       >
-        <div className="relative h-[72vh] md:h-[86vh] max-w-6xl mx-auto rounded-2xl overflow-hidden shadow-lg">
-          <div
-            className="absolute inset-0 bg-[url('/firstpage.png')] bg-cover bg-center transform-gpu scale-105"
-            style={{ filter: "brightness(0.55)" }}
-          ></div>
-
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "linear-gradient(120deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.2) 90%)",
-            }}
-          ></div>
-
-          <div className="absolute inset-0 flex items-center justify-center px-6">
-            <div className="text-center">
-              <p className="uppercase tracking-[0.38em] text-xs text-white/80">
-                Décoration d’interieur
-              </p>
-              <h1 className="serif text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-white tracking-[0.02em] mt-3">
-                L’ART DE RÉVÉLER VOS ESPACE
-              </h1>
-              <div className="flex flex-col md:flex-row items-center gap-3 justify-center mt-6">
-                <a
-                  href="#contact"
-                  className="inline-flex items-center px-6 py-3 rounded-full bg-[var(--color-accent)] text-white tracking-[0.18em] uppercase text-xs hover:bg-[var(--color-accent-2)] transition shadow-soft"
-                >
-                  Débuter votre projet
-                </a>
-                <a
-                  href="#portfolio"
-                  className="inline-flex items-center gap-2 text-sm md:text-base text-white hover:text-[var(--color-accent)] transition"
-                >
-                  <span>Découvrir les réalisations</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-4 h-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M12 5v14" />
-                    <path d="M19 12l-7 7-7-7" />
-                  </svg>
-                </a>
-              </div>
-            </div>
+        {[['10+', 'Projets réalisés'], ['100%', 'Sur mesure']].map(([num, label]) => (
+          <div key={num} className="text-right">
+            <p
+              style={{
+                fontFamily: '"Cormorant Garamond", serif',
+                fontSize: '1.6rem',
+                fontWeight: 300,
+                color: 'var(--gold-light)',
+                lineHeight: 1,
+              }}
+            >
+              {num}
+            </p>
+            <p
+              className="mt-1"
+              style={{
+                fontFamily: '"DM Sans", sans-serif',
+                fontSize: '0.6rem',
+                letterSpacing: '0.18em',
+                textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.5)',
+              }}
+            >
+              {label}
+            </p>
           </div>
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/75 text-sm tracking-[0.18em] uppercase">
-            Faites défiler
-          </div>
-        </div>
+        ))}
       </motion.div>
+
+      {/* Bottom-center: CTAs + scroll indicator stacked */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-5">
+        {/* CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.05, duration: 0.8 }}
+          className="flex flex-col sm:flex-row items-center gap-4"
+        >
+          <Link to="/debuter-projet" className="btn-gold">
+            Débuter votre projet
+          </Link>
+          <a
+            href="#portfolio"
+            className="flex items-center gap-2 text-[11px] tracking-[0.22em] uppercase font-medium"
+            style={{ color: 'rgba(255,255,255,0.8)', fontFamily: '"DM Sans", sans-serif' }}
+          >
+            Voir les réalisations
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 5v14M19 12l-7 7-7-7" />
+            </svg>
+          </a>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 0.6 }}
+          className="flex flex-col items-center gap-2"
+        >
+          <span
+            className="text-[9px] tracking-[0.28em] uppercase"
+            style={{ color: 'rgba(255,255,255,0.45)', fontFamily: '"DM Sans", sans-serif' }}
+          >
+            Défiler
+          </span>
+          <div
+            className="w-px overflow-hidden"
+            style={{ height: '36px', background: 'rgba(255,255,255,0.15)' }}
+          >
+            <motion.div
+              className="w-full"
+              style={{ height: '36px', background: 'var(--gold)' }}
+              animate={{ y: ['-100%', '100%'] }}
+              transition={{ repeat: Infinity, duration: 1.6, ease: 'linear' }}
+            />
+          </div>
+        </motion.div>
+      </div>
     </section>
-  );
+  )
 }
