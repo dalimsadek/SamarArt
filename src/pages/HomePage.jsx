@@ -6,6 +6,7 @@ import Portfolio from '../components/Portfolio'
 import Atelier from '../components/Atelier'
 import Testimonials from '../components/Testimonials'
 import Contact from '../components/Contact'
+import InstagramReels from '../components/InstagramReels'
 
 export default function HomePage() {
   return (
@@ -14,6 +15,8 @@ export default function HomePage() {
       <Design />
       <Divider />
       <Portfolio />
+      <Divider />
+      <InstagramReels />
       <Divider />
       <Atelier />
       <Divider />
