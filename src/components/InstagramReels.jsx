@@ -90,7 +90,6 @@ export default function InstagramReels() {
               )}
               <div style={S.overlay} />
               <div style={S.cardLabel}>
-                <p style={S.cardTitle}>{reel.title}</p>
                 <span style={S.badge}>
                   <svg viewBox="0 0 24 24" style={{ width: 8, height: 8, fill: 'white', flexShrink: 0 }}>
                     <polygon points="5 3 19 12 5 21 5 3"/>
