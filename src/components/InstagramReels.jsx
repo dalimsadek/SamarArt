@@ -1,82 +1,98 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import { instagramReels } from '../data/instagramReels'
 
 const INSTAGRAM_PROFILE = 'https://www.instagram.com/samart.interior/'
+const NORMAL_DURATION = 36
+const FAST_DURATION = 12
 
 export default function InstagramReels() {
-  const trackRef = useRef(null)
-  const [activeIdx, setActiveIdx] = useState(0)
-  const [canPrev, setCanPrev] = useState(false)
-  const [canNext, setCanNext] = useState(instagramReels.length > 1)
+  const [duration, setDuration] = useState(NORMAL_DURATION)
+  const [paused, setPaused] = useState(false)
+  const timerRef = useRef(null)
 
-  function getVisibleIdx() {
-    const track = trackRef.current
-    if (!track) return 0
-    const trackLeft = track.getBoundingClientRect().left
-    const items = Array.from(track.querySelectorAll('[data-reel]'))
-    let closest = 0, minDist = Infinity
-    items.forEach((c, i) => {
-      const d = Math.abs(c.getBoundingClientRect().left - trackLeft)
-      if (d < minDist) { minDist = d; closest = i }
-    })
-    return closest
+  function accelerate() {
+    setDuration(FAST_DURATION)
+    clearTimeout(timerRef.current)
+    timerRef.current = setTimeout(() => setDuration(NORMAL_DURATION), 2500)
   }
 
-  function scrollToCard(i) {
-    const track = trackRef.current
-    if (!track) return
-    const items = Array.from(track.querySelectorAll('[data-reel]'))
-    const card = items[i]
-    if (!card) return
-    const pl = parseInt(getComputedStyle(track).paddingLeft) || 0
-    track.scrollTo({ left: card.offsetLeft - pl, behavior: 'smooth' })
-  }
-
-  function updateState() {
-    const i = getVisibleIdx()
-    setActiveIdx(i)
-    setCanPrev(i > 0)
-    setCanNext(i < instagramReels.length - 1)
-  }
-
-  useEffect(() => {
-    const track = trackRef.current
-    if (!track) return
-    track.addEventListener('scroll', updateState, { passive: true })
-    return () => track.removeEventListener('scroll', updateState)
-  }, [])
+  const doubled = [...instagramReels, ...instagramReels]
 
   return (
-    <section style={S.section}>
+    <section style={{ padding: '80px 0', overflow: 'hidden' }}>
 
       {/* Header */}
-      <div style={S.header}>
-        <div style={S.eyebrow}>
-          <IgIcon size={22} radius={6} />
-          <span style={S.eyebrowText}>@samart.interior</span>
+      <div
+        style={{
+          paddingLeft: 'max(48px, env(safe-area-inset-left, 0px))',
+          paddingRight: 'max(48px, env(safe-area-inset-right, 0px))',
+          maxWidth: 1200,
+          margin: '0 auto',
+          marginBottom: 36,
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: 16,
+        }}
+      >
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+            <IgIcon size={22} radius={6} />
+            <span style={S.eyebrowText}>@samart.interior</span>
+          </div>
+          <h2 style={S.title}>Réalisations <em>en images</em></h2>
+          <p style={S.sub}>
+            Retrouvez tous les reels sur{' '}
+            <a href={INSTAGRAM_PROFILE} target="_blank" rel="noopener noreferrer" style={S.link}>
+              Instagram →
+            </a>
+          </p>
         </div>
-        <h2 style={S.title}>Réalisations <em>en images</em></h2>
-        <p style={S.sub}>
-          Retrouvez tous les reels sur{' '}
-          <a href={INSTAGRAM_PROFILE} target="_blank" rel="noopener noreferrer" style={S.link}>
-            Instagram →
-          </a>
-        </p>
+
+        {/* Controls */}
+        <div style={{ display: 'flex', gap: 10, alignItems: 'center', paddingBottom: 4 }}>
+          <button
+            aria-label={paused ? 'Reprendre' : 'Pause'}
+            onClick={() => setPaused(p => !p)}
+            style={S.ctrlBtn}
+          >
+            {paused ? (
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            ) : (
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            )}
+          </button>
+          <button
+            aria-label="Accélérer"
+            onClick={accelerate}
+            style={S.ctrlBtn}
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 19 22 12 13 5 13 19"/><polygon points="2 19 11 12 2 5 2 19"/></svg>
+          </button>
+        </div>
       </div>
 
-      {/* Carousel */}
-      <div style={S.carouselOuter}>
-        <ArrowBtn
-          dir="prev"
-          disabled={!canPrev}
-          onClick={() => scrollToCard(Math.max(0, getVisibleIdx() - 1))}
-        />
-
-        <div ref={trackRef} style={S.track}>
-          {instagramReels.map((reel, i) => (
+      {/* Marquee track */}
+      <div
+        style={{ overflow: 'hidden', cursor: 'grab' }}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        <div
+          style={{
+            display: 'flex',
+            gap: 14,
+            width: 'max-content',
+            paddingBlock: '8px 20px',
+            animation: `ig-scroll ${duration}s linear infinite`,
+            animationPlayState: paused ? 'paused' : 'running',
+            willChange: 'transform',
+          }}
+        >
+          {doubled.map((reel, i) => (
             <a
               key={i}
-              data-reel
               href={reel.url}
               target="_blank"
               rel="noopener noreferrer"
@@ -84,7 +100,7 @@ export default function InstagramReels() {
               className="ig-reel-card"
             >
               {reel.thumbnail ? (
-                <img src={reel.thumbnail} alt={reel.title} style={S.cardImg} loading="lazy" />
+                <img src={reel.thumbnail} alt="Reel Sam'Art" style={S.cardImg} loading="lazy" />
               ) : (
                 <div style={S.placeholder} />
               )}
@@ -100,26 +116,19 @@ export default function InstagramReels() {
             </a>
           ))}
         </div>
-
-        <ArrowBtn
-          dir="next"
-          disabled={!canNext}
-          onClick={() => scrollToCard(Math.min(instagramReels.length - 1, getVisibleIdx() + 1))}
-        />
       </div>
 
-      {/* Dot nav + CTA */}
-      <div style={S.footer}>
-        <div style={S.dotNav}>
-          {instagramReels.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => scrollToCard(i)}
-              style={i === activeIdx ? { ...S.dot, ...S.dotActive } : S.dot}
-              aria-label={`Reel ${i + 1}`}
-            />
-          ))}
-        </div>
+      {/* Footer CTA */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+          paddingLeft: 'max(48px, env(safe-area-inset-left, 0px))',
+          paddingRight: 'max(48px, env(safe-area-inset-right, 0px))',
+          marginTop: 20,
+        }}
+      >
         <a href={INSTAGRAM_PROFILE} target="_blank" rel="noopener noreferrer" style={S.cta} className="ig-cta">
           <IgIcon size={16} radius={4} iconSize={10} />
           Voir tous les reels
@@ -127,6 +136,10 @@ export default function InstagramReels() {
       </div>
 
       <style>{`
+        @keyframes ig-scroll {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
         .ig-reel-card { transition: transform .22s ease, box-shadow .22s ease !important; }
         .ig-reel-card:hover { transform: translateY(-4px) scale(1.015) !important; box-shadow: 0 10px 36px rgba(0,0,0,.22) !important; }
         .ig-cta:hover { background: #B8955A !important; color: #FAF8F5 !important; }
@@ -149,43 +162,7 @@ function IgIcon({ size = 22, radius = 6, iconSize = 13 }) {
   )
 }
 
-function ArrowBtn({ dir, disabled, onClick }) {
-  return (
-    <button
-      onClick={onClick}
-      disabled={disabled}
-      aria-label={dir === 'prev' ? 'Précédent' : 'Suivant'}
-      style={{
-        ...S.arrow,
-        ...(dir === 'prev' ? S.arrowPrev : S.arrowNext),
-        opacity: disabled ? 0.3 : 1,
-        pointerEvents: disabled ? 'none' : 'auto',
-      }}
-    >
-      <svg viewBox="0 0 24 24" style={S.arrowSvg}>
-        {dir === 'prev'
-          ? <polyline points="15 18 9 12 15 6"/>
-          : <polyline points="9 18 15 12 9 6"/>}
-      </svg>
-    </button>
-  )
-}
-
 const S = {
-  section: {
-    padding: '80px 0',
-    overflow: 'hidden',
-  },
-  header: {
-    paddingLeft: 'max(48px, env(safe-area-inset-left, 0px))',
-    paddingRight: 'max(48px, env(safe-area-inset-right, 0px))',
-    maxWidth: 1200,
-    margin: '0 auto',
-    marginBottom: 36,
-  },
-  eyebrow: {
-    display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12,
-  },
   eyebrowText: {
     fontSize: 11, fontWeight: 500, letterSpacing: '.12em',
     textTransform: 'uppercase', color: '#7A6E68',
@@ -196,26 +173,14 @@ const S = {
     letterSpacing: '-.01em', margin: '0 0 6px',
     lineHeight: 1.1,
   },
-  sub: {
-    fontSize: 13, color: '#7A6E68', margin: 0,
-  },
-  link: {
-    color: '#B8955A', textDecoration: 'none', fontWeight: 500,
-  },
+  sub: { fontSize: 13, color: '#7A6E68', margin: 0 },
+  link: { color: '#B8955A', textDecoration: 'none', fontWeight: 500 },
 
-  carouselOuter: {
-    position: 'relative',
-  },
-  track: {
-    display: 'flex',
-    gap: 14,
-    overflowX: 'auto',
-    scrollSnapType: 'x mandatory',
-    WebkitOverflowScrolling: 'touch',
-    scrollbarWidth: 'none',
-    paddingLeft: 'max(48px, env(safe-area-inset-left, 0px))',
-    paddingRight: 'max(48px, env(safe-area-inset-right, 0px))',
-    paddingBlock: '8px 20px',
+  ctrlBtn: {
+    width: 38, height: 38, borderRadius: '50%',
+    border: '1px solid #E8E0D6', background: '#fff',
+    cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+    color: '#7A6E68', flexShrink: 0,
   },
 
   card: {
@@ -224,7 +189,6 @@ const S = {
     aspectRatio: '9/16',
     borderRadius: 16,
     overflow: 'hidden',
-    scrollSnapAlign: 'start',
     position: 'relative',
     background: '#F0E8D8',
     boxShadow: '0 4px 24px rgba(0,0,0,.12)',
@@ -232,9 +196,7 @@ const S = {
     display: 'block',
     textDecoration: 'none',
   },
-  cardImg: {
-    width: '100%', height: '100%', objectFit: 'cover', display: 'block',
-  },
+  cardImg: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' },
   placeholder: {
     width: '100%', height: '100%',
     background: 'linear-gradient(160deg, #EDE5D8 0%, #D4C4A8 100%)',
@@ -244,14 +206,7 @@ const S = {
     background: 'linear-gradient(to bottom, transparent, rgba(14,10,6,.65))',
     pointerEvents: 'none',
   },
-  cardLabel: {
-    position: 'absolute', bottom: 16, left: 14, right: 14, zIndex: 1,
-  },
-  cardTitle: {
-    fontFamily: "'Playfair Display', Georgia, serif",
-    fontSize: 15, fontWeight: 400, color: '#fff',
-    lineHeight: 1.2, margin: '0 0 6px',
-  },
+  cardLabel: { position: 'absolute', bottom: 16, left: 14, right: 14, zIndex: 1 },
   badge: {
     display: 'inline-flex', alignItems: 'center', gap: 5,
     background: 'rgba(255,255,255,.18)',
@@ -262,42 +217,10 @@ const S = {
     color: 'rgba(255,255,255,.9)', textTransform: 'uppercase',
   },
 
-  arrow: {
-    position: 'absolute', top: '50%', transform: 'translateY(-50%)',
-    width: 40, height: 40, borderRadius: '50%',
-    background: '#fff', border: '1px solid #E8E0D6',
-    boxShadow: '0 2px 12px rgba(0,0,0,.12)',
-    cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
-    zIndex: 2, padding: 0,
-  },
-  arrowPrev: { left: 8 },
-  arrowNext: { right: 8 },
-  arrowSvg: {
-    width: 16, height: 16, stroke: '#1E1A17', fill: 'none',
-    strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round',
-  },
-
-  footer: {
-    display: 'flex', alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingLeft: 'max(48px, env(safe-area-inset-left, 0px))',
-    paddingRight: 'max(48px, env(safe-area-inset-right, 0px))',
-    marginTop: 24, gap: 16, flexWrap: 'wrap',
-  },
-  dotNav: { display: 'flex', gap: 6, alignItems: 'center' },
-  dot: {
-    width: 6, height: 6, borderRadius: '50%',
-    background: '#E8E0D6', border: 'none', padding: 0,
-    cursor: 'pointer', transition: 'all .2s',
-  },
-  dotActive: {
-    width: 20, borderRadius: 3, background: '#B8955A',
-  },
   cta: {
     display: 'inline-flex', alignItems: 'center', gap: 8,
     padding: '10px 20px', borderRadius: 100,
-    border: '1.5px solid #B8955A',
-    color: '#B8955A',
+    border: '1.5px solid #B8955A', color: '#B8955A',
     fontSize: 12, fontWeight: 500, letterSpacing: '.08em',
     textTransform: 'uppercase', textDecoration: 'none',
     transition: 'all .18s',

@@ -114,8 +114,8 @@ export default function Contact() {
             <div className="space-y-4" style={{ borderTop: '1px solid var(--border)', paddingTop: '2rem' }}>
               {[
                 ['Email', 'contact@samart-interior.fr', 'mailto:contact@samart-interior.fr'],
-                ['Téléphone', '+33 7 60 75 59 72', 'tel:+33760755972'],
-                ['Instagram', '@samarscorner', 'https://www.instagram.com/samarscorner/'],
+                ['Téléphone', '+33 7 54 37 89 89', 'tel:+33754378989'],
+                ['Instagram', '@samart.interior', 'https://www.instagram.com/samart.interior/'],
                 ['Localisation', 'Remiremont, France', null],
               ].map(([label, value, href]) => (
                 <div key={label} className="flex gap-6">
@@ -148,7 +148,7 @@ export default function Contact() {
             <div className="overflow-hidden" style={{ borderRadius: '2px', border: '1px solid var(--border)' }}>
               <iframe
                 title="Localisation Sam'Art"
-                src="https://www.google.com/maps?q=48.019852,6.610639&z=14&output=embed"
+                src="https://maps.google.com/maps?q=48.019852,6.610639&z=14&output=embed"
                 width="100%"
                 height="220"
                 loading="lazy"
